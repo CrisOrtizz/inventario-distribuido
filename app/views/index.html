@@ -95,7 +95,7 @@ interactúan con un servidor central para gestionar el inventario.
 
 <div class="card-body">
 
-<ul class="list-group list-group-flush">
+<ul id="lista-eventos" class="list-group list-group-flush">
 
 {% for evento in eventos %}
 
@@ -110,6 +110,36 @@ interactúan con un servidor central para gestionar el inventario.
 </div>
 
 </div>
+
+<script>
+
+async function actualizarEventos() {
+
+    const response = await fetch("/eventos");
+
+    const eventos = await response.json();
+
+    const lista = document.getElementById("lista-eventos");
+
+    lista.innerHTML = "";
+
+    eventos.forEach(evento => {
+
+        const item = document.createElement("li");
+
+        item.className = "list-group-item";
+
+        item.textContent = evento;
+
+        lista.appendChild(item);
+
+    });
+
+}
+
+setInterval(actualizarEventos, 3000);
+
+</script>
 
 </body>
 </html>

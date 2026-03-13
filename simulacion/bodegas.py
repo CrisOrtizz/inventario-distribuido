@@ -1,27 +1,22 @@
 import threading
 import random
 import time
-from app.models.inventario import Inventario
-
-inventario = Inventario()
 
 class Bodega(threading.Thread):
 
-    def __init__(self, nombre):
+    def __init__(self, nombre, inventario):
         threading.Thread.__init__(self)
         self.nombre = nombre
+        self.inventario = inventario
+        self.productos = ["martillo", "taladro", "destornillador"]
 
     def run(self):
 
-        productos = ["martillo", "taladro", "destornillador"]
+        while True:
 
-        for _ in range(3):
-
-            producto = random.choice(productos)
+            producto = random.choice(self.productos)
             cantidad = random.randint(1,2)
 
-            print(f"{self.nombre} intenta vender {producto}")
+            self.inventario.vender(self.nombre, producto, cantidad)
 
-            inventario.vender(producto, cantidad)
-
-            time.sleep(1)
+            time.sleep(random.randint(3,6))
