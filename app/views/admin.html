@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>LogiStock Admin</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-4">
+
+<h1 class="text-center">Panel Administrador</h1>
+
+<hr>
+
+<h3>Servidor Central</h3>
+
+<div class="card p-3 mb-4">
+
+<h5>Inventario Global</h5>
+
+<ul>
+
+{% for producto, cantidad in stock.items() %}
+
+<li>{{ producto }} : {{ cantidad }}</li>
+
+{% endfor %}
+
+</ul>
+
+</div>
+
+<div class="row">
+
+<div class="col-md-4">
+
+<div class="card p-3">
+
+<h5>Bodega Norte</h5>
+<p>Conectada al servidor</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card p-3">
+
+<h5>Bodega Centro</h5>
+<p>Conectada al servidor</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card p-3">
+
+<h5>Bodega Industrial</h5>
+<p>Conectada al servidor</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

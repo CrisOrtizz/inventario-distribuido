@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>LogiStock</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-4">
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<div>
+<h1 class="fw-bold">LogiStock</h1>
+<p class="text-muted mb-0">Sistema Distribuido de Inventario</p>
+</div>
+
+<div>
+<a href="/admin" class="btn btn-dark">Panel Administrador</a>
+</div>
+
+</div>
+<div class="alert alert-info text-center">
+
+Este sistema simula una arquitectura distribuida donde varias bodegas
+interactúan con un servidor central para gestionar el inventario.
+
+</div>
+
+<hr>
+
+<h3>Productos</h3>
+
+<div class="row">
+
+<div class="col-md-4">
+<div class="card shadow-sm h-100">
+
+<img src="/static/images/martillo.jpg" class="card-img-top">
+
+<div class="card-body text-center">
+
+<h5 class="card-title">Martillo</h5>
+
+<p class="text-muted">Herramienta utilizada en operaciones de bodega</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card shadow-sm h-100">
+
+<img src="/static/images/taladro.jpg" class="card-img-top">
+
+<div class="card-body text-center">
+
+<h5 class="card-title">Taladro</h5>
+
+<p class="text-muted">Herramienta utilizada en operaciones de bodega</p>
+
+</div>
+
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card shadow-sm h-100">
+
+<img src="/static/images/destornillador.jpg" class="card-img-top">
+
+<div class="card-body text-center">
+
+<h5 class="card-title">Destornillador</h5>
+
+<p class="text-muted">Herramienta utilizada en operaciones de bodega</p>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+<hr>
+
+<h3 class="mt-4">Actividad del sistema</h3>
+
+<div class="card shadow-sm">
+
+<div class="card-body">
+
+<ul class="list-group list-group-flush">
+
+{% for evento in eventos %}
+
+<li class="list-group-item">
+{{ evento }}
+</li>
+
+{% endfor %}
+
+</ul>
+
+</div>
+
+</div>
+
+</body>
+</html>
