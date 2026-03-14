@@ -30,6 +30,12 @@ border-left:2px solid #444;
 margin:auto;
 }
 
+.bodega-activa{
+background:#d1e7dd;
+border:2px solid #0f5132;
+transition:0.3s;
+}
+
 </style>
 
 </head>
@@ -68,7 +74,7 @@ margin:auto;
 
 <div class="col-md-4">
 
-<div class="bodega shadow-sm">
+<div class="bodega shadow-sm" id="bodega-norte">
 
 <h6>Bodega Norte</h6>
 
@@ -78,9 +84,10 @@ margin:auto;
 
 </div>
 
+
 <div class="col-md-4">
 
-<div class="bodega shadow-sm">
+<div class="bodega shadow-sm" id="bodega-centro">
 
 <h6>Bodega Centro</h6>
 
@@ -92,7 +99,7 @@ margin:auto;
 
 <div class="col-md-4">
 
-<div class="bodega shadow-sm">
+<div class="bodega shadow-sm" id="bodega-industrial">
 
 <h6>Bodega Industrial</h6>
 
@@ -181,6 +188,8 @@ if(eventos.length > 0 && eventos[0] !== ultimoEvento){
 
 mostrarNotificacion(eventos[0]);
 
+resaltarBodega(eventos[0]);
+
 ultimoEvento = eventos[0];
 
 }
@@ -191,6 +200,7 @@ setInterval(actualizarEventos,3000);
 actualizarEventos();
 
 </script>
+
 
 <script>
 
@@ -210,6 +220,7 @@ ${mensaje}
 </div>
 `;
 
+
 container.appendChild(toast);
 
 setTimeout(() => {
@@ -217,6 +228,38 @@ toast.remove();
 }, 4000);
 
 }
+
+function resaltarBodega(evento){
+
+let idBodega = null;
+
+if(evento.includes("Bodega Norte")){
+idBodega = "bodega-norte";
+}
+
+if(evento.includes("Bodega Centro")){
+idBodega = "bodega-centro";
+}
+
+if(evento.includes("Bodega Industrial")){
+idBodega = "bodega-industrial";
+}
+
+if(idBodega){
+
+const bodega = document.getElementById(idBodega);
+
+bodega.classList.add("bodega-activa");
+
+setTimeout(()=>{
+bodega.classList.remove("bodega-activa");
+},2000);
+
+}
+
+}
+
+</script>
 
 </script>
 
