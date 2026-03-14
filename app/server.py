@@ -17,6 +17,13 @@ bodega_norte.start()
 bodega_centro.start()
 bodega_industrial.start()
 
+@app.route("/inventario")
+def inventario_api():
+
+    stock = inventario.obtener_stock()
+
+    return jsonify(stock)
+    
 @app.route("/eventos")
 def eventos():
 
