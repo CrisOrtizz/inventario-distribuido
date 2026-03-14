@@ -8,6 +8,8 @@
 
 </head>
 
+<div class="toast-container position-fixed bottom-0 end-0 p-3" id="toast-container"></div>
+
 <body class="bg-light">
 
 <div class="container mt-4">
@@ -113,31 +115,68 @@ interactúan con un servidor central para gestionar el inventario.
 
 <script>
 
-async function actualizarEventos() {
+let ultimoEvento = null;
 
-    const response = await fetch("/eventos");
+async function actualizarEventos(){
 
-    const eventos = await response.json();
+const response = await fetch("/eventos");
 
-    const lista = document.getElementById("lista-eventos");
+const eventos = await response.json();
 
-    lista.innerHTML = "";
+const lista = document.getElementById("lista-eventos");
 
-    eventos.forEach(evento => {
+lista.innerHTML = "";
 
-        const item = document.createElement("li");
+eventos.forEach(evento => {
 
-        item.className = "list-group-item";
+const item = document.createElement("li");
 
-        item.textContent = evento;
+item.className = "list-group-item";
 
-        lista.appendChild(item);
+item.textContent = evento;
 
-    });
+lista.appendChild(item);
+
+});
+
+if(eventos.length > 0 && eventos[0] !== ultimoEvento){
+
+mostrarNotificacion(eventos[0]);
+
+ultimoEvento = eventos[0];
 
 }
 
-setInterval(actualizarEventos, 3000);
+}
+
+setInterval(actualizarEventos,3000);
+
+</script>
+<script>
+
+function mostrarNotificacion(mensaje){
+
+const container = document.getElementById("toast-container");
+
+const toast = document.createElement("div");
+
+toast.className = "toast align-items-center text-bg-dark border-0 show mb-2";
+
+toast.innerHTML = `
+<div class="d-flex">
+<div class="toast-body">
+${mensaje}
+</div>
+</div>
+`;
+
+container.appendChild(toast);
+
+setTimeout(() => {
+toast.remove();
+}, 4000);
+
+}
 
 </script>
 
