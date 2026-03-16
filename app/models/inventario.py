@@ -26,6 +26,15 @@ class Inventario:
 
                 self.eventos.insert(0, evento)
 
+                # reposición automática si el stock es bajo
+                if self.stock[producto] < 5:
+
+                    self.stock[producto] += 50
+
+                    evento_reposicion = f"Sistema repuso inventario de {producto}"
+
+                    self.eventos.insert(0, evento_reposicion)
+
                 return True
 
             return False
