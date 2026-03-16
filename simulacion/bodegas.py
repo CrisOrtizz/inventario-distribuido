@@ -5,9 +5,10 @@ import time
 class Bodega(threading.Thread):
 
     def __init__(self, nombre, inventario):
-        threading.Thread.__init__(self)
+        super().__init__()
         self.nombre = nombre
         self.inventario = inventario
+        self.daemon = True   # MUY IMPORTANTE para servidores como Render
         self.productos = ["martillo", "taladro", "destornillador"]
 
     def run(self):
@@ -15,8 +16,8 @@ class Bodega(threading.Thread):
         while True:
 
             producto = random.choice(self.productos)
-            cantidad = random.randint(1,2)
+            cantidad = random.randint(1, 2)
 
             self.inventario.vender(self.nombre, producto, cantidad)
 
-            time.sleep(random.randint(3,6))
+            time.sleep(random.randint(4, 8))
